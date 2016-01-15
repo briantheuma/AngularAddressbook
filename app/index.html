@@ -16,7 +16,7 @@
     <h4 class="page_subtitle" ng-cloak>{{ ::subTitle }}</h4>
 
     <div class="btn_add-contact" ng-click="addingContact()">
-        <i class="fa fa-plus"></i> Add new contact
+        <i class="ico abi-plus"></i> Add new contact
     </div>
 
     <div class="contacts">
@@ -28,15 +28,15 @@
                         <span class="item_name">{{ contact.firstName }} {{ contact.lastName }}</span>
                     </div>
                     <div class="item_commands">
-                        <span class="icon_command edit" ng-click="editingContact(contact)"><i class="fa fa-pencil"></i></span>
-                        <span class="icon_command delete" ng-click="deleteContact(contact.id)"><i class="fa fa-trash"></i></span>
+                        <span class="icon_command edit" ng-click="editingContact(contact)"><i class="ico abi-pencil"></i></span>
+                        <span class="icon_command delete" ng-click="deleteContact(contact.id)"><i class="ico abi-bin"></i></span>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="full_details fadein fadeout" ng-show="contactDetails">
-            <span class="btn_close" ng-click="contactDetails=!contactDetails"><i class="fa fa-close"></i></span>
+            <span class="btn_close" ng-click="contactDetails=!contactDetails"><i class="ico abi-cross"></i></span>
             <div class="item_icon-wrapper"><div class="item_icon">{{ fullDetails.firstName | limitTo:1 | uppercase}}</div></div>
             <div class="item_name">{{ fullDetails.firstName }} {{ fullDetails.lastName }}</div>
             <div class="item_email"><a href="mailto:{{ fullDetails.email }}">{{ fullDetails.email }}</a></div>
@@ -47,13 +47,13 @@
                 <div>{{ fullDetails.country }}</div>
             </div>
             <div class="item_commands">
-                <span class="icon_command edit" ng-click="editingContact(fullDetails)"><i class="fa fa-pencil"></i></span>
-                <span class="icon_command delete" ng-click="contactDetails=!contactDetails;deleteContact(fullDetails.id)"><i class="fa fa-trash"></i></span>
+                <span class="icon_command edit" ng-click="editingContact(fullDetails)"><i class="ico abi-pencil"></i></span>
+                <span class="icon_command delete" ng-click="contactDetails=!contactDetails;deleteContact(fullDetails.id)"><i class="ico abi-bin"></i></span>
             </div>
         </div>
 
         <div class="editContactForm fadein fadeout" ng-show="contactEdit" ng-controller="EditContactController">
-            <span class="btn_close" ng-click="$parent.contactEdit=!$parent.contactEdit"><i class="fa fa-close"></i></span>
+            <span class="btn_close" ng-click="$parent.contactEdit=!$parent.contactEdit"><i class="ico abi-cross"></i></span>
             <div class="item_icon-wrapper"><div class="item_icon">{{contactCopy.firstName | limitTo:1 | uppercase}}</div></div>
 
             <form name="editContact" ng-submit="updateContact(contactCopy,editContact.$valid)" novalidate>
@@ -93,7 +93,7 @@
 
 
         <div ng-show="contactAdd" class="addContactForm fadein fadeout" ng-controller="AddContactController">
-            <span class="btn_close" ng-click="resetForm();$parent.contactAdd=!$parent.contactAdd" ng-show="!closeNewAddition"><i class="fa fa-close"></i></span>
+            <span class="btn_close" ng-click="resetForm();$parent.contactAdd=!$parent.contactAdd" ng-show="!closeNewAddition"><i class="ico abi-cross"></i></span>
             <div class="item_icon-wrapper"><div class="item_icon">{{firstName | limitTo:1 | uppercase}}</div></div>
             <form name="newContact" ng-submit="addContact(newContact.$valid)" novalidate>
 

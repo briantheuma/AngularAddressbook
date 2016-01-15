@@ -10,7 +10,6 @@ var gulp = require('gulp'),
     livereload = require('gulp-livereload');
 
 var config = {
-    nodePath: './node_modules',
     distPath: './dist',
     sourcePath: './app'
 };
@@ -32,8 +31,8 @@ gulp.task('browserify', function() {
         .pipe(livereload());
 });
 
-gulp.task('icons', function() {
-    return gulp.src(config.nodePath + '/font-awesome/fonts/**.*')
+gulp.task('fonts', function() {
+    return gulp.src(config.sourcePath + '/fonts/**.*')
         .pipe(gulp.dest(config.distPath + '/assets/fonts'))
         .pipe(livereload());
 });
@@ -42,8 +41,7 @@ gulp.task('sass', function() {
     return sass(config.sourcePath + '/sass/styles.scss', {
         style: 'compressed',
         loadPath: [
-            config.sourcePath + '/sass',
-            config.nodePath + '/font-awesome/scss'
+            config.sourcePath + '/sass'
         ]
     })
     .pipe(gulp.dest(config.distPath + '/assets/css'))
@@ -75,4 +73,4 @@ gulp.task('watch', function() {
     gulp.watch('app/index.html', ['index-html']);
 });
 
-gulp.task('default', ['serve', 'watch', 'browserify','directive-templates','icons','sass','index-html']);
+gulp.task('default', ['serve', 'watch', 'browserify','directive-templates','fonts','sass','index-html']);

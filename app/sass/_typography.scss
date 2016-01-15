@@ -1,3 +1,72 @@
-@import "font-awesome";
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800);
 $f-tahoma: Tahoma, Verdana, Segoe, sans-serif;
+
+@font-face {
+  font-family: 'addressbook-icons';
+  src:    url('../fonts/addressbook-icons.eot?5cs909');
+  src:    url('../fonts/addressbook-icons.eot?5cs909#iefix') format('embedded-opentype'),
+  url('../fonts/addressbook-icons.ttf?5cs909') format('truetype'),
+  url('../fonts/addressbook-icons.woff?5cs909') format('woff'),
+  url('../fonts/addressbook-icons.svg?5cs909#addressbook-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.ico {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'addressbook-icons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+$abi-pencil: "\e900";
+$abi-address-book: "\e901";
+$abi-envelop: "\e902";
+$abi-location: "\e903";
+$abi-bin: "\e904";
+$abi-plus: "\e905";
+$abi-cross: "\e906";
+
+.abi-pencil {
+  &:before {
+    content: $abi-pencil;
+  }
+}
+.abi-address-book {
+  &:before {
+    content: $abi-address-book;
+  }
+}
+.abi-envelop {
+  &:before {
+    content: $abi-envelop;
+  }
+}
+.abi-location {
+  &:before {
+    content: $abi-location;
+  }
+}
+.abi-bin {
+  &:before {
+    content: $abi-bin;
+  }
+}
+.abi-plus {
+  &:before {
+    content: $abi-plus;
+  }
+}
+.abi-cross {
+  &:before {
+    content: $abi-cross;
+  }
+}
+
