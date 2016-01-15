@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app" class="ng-cloak">
+<head>
+    <meta charset="UTF-8">
+    <title>AddressBook App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div ng-controller="MainController">
+    <h1 class="page_title" ng-cloak>{{ ::mainTitle }}</h1>
+    <h4 class="page_subtitle" ng-cloak>{{ ::subTitle }}</h4>
+
+    <div class="btn_add-contact" ng-click="addingContact()">
+        <i class="fa fa-plus"></i> Add new contact
+    </div>
+
+    <div class="contacts">
+        <div class="contacts_items">
+            <div ng-repeat="contact in contacts | orderBy:'firstName' track by $index">
+                <div class="item-list_item">
+                    <div ng-click="showFullDetails(contact)">
+                        <span class="item_icon">{{ contact.firstName | limitTo:1 | uppercase}}</span>
+                        <span class="item_name">{{ contact.firstName }} {{ contact.lastName }}</span>
+                    </div>
+                    <div class="item_commands">
+                        <span class="icon_command edit" ng-click="editingContact(contact)"><i class="fa fa-pencil"></i></span>
+                        <span class="icon_command delete" ng-click="deleteContact(contact.id)"><i class="fa fa-trash"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="full_details fadein fadeout" ng-show="contactDetails">
+            <span class="btn_close" ng-click="contactDetails=!contactDetails"><i class="fa fa-close"></i></span>
+            <div class="item_icon-wrapper"><div class="item_icon">{{ fullDetails.firstName | limitTo:1 | uppercase}}</div></div>
+            <div class="item_name">{{ fullDetails.firstName }} {{ fullDetails.lastName }}</div>
+            <div class="item_email"><a href="mailto:{{ fullDetails.email }}">{{ fullDetails.email }}</a></div>
+            <div class="item_address-details">
+                <div>{{ fullDetails.address }}</div>
+                <div>{{ fullDetails.city }}</div>
+                <div>{{ fullDetails.zipCode }}</div>
+                <div>{{ fullDetails.country }}</div>
+            </div>
+            <div class="item_commands">
+                <span class="icon_command edit" ng-click="editingContact(fullDetails)"><i class="fa fa-pencil"></i></span>
+                <span class="icon_command delete" ng-click="contactDetails=!contactDetails;deleteContact(fullDetails.id)"><i class="fa fa-trash"></i></span>
+            </div>
+        </div>
+
+        <div class="editContactForm fadein fadeout" ng-show="contactEdit" ng-controller="EditContactController">
+            <span class="btn_close" ng-click="$parent.contactEdit=!$parent.contactEdit"><i class="fa fa-close"></i></span>
+            <div class="item_icon-wrapper"><div class="item_icon">{{contactCopy.firstName | limitTo:1 | uppercase}}</div></div>
+
+            <form name="editContact" ng-submit="updateContact(contactCopy,editContact.$valid)" novalidate>
+                <ab-text-field name="firstName" ph="First name" ng-model="contactCopy.firstName" req="true"></ab-text-field>
+                <div ng-messages="editContact.firstName.$error" ng-if="editContact.$submitted" class="error-message">
+                    <div ng-message="required">
+                        First name is required.
+                    </div>
+                </div>
+
+                <ab-text-field name="lastName" ph="Last name" ng-model="contactCopy.lastName" req="true"></ab-text-field>
+                <div ng-messages="editContact.lastName.$error" ng-if="editContact.$submitted" class="error-message">
+                    <div ng-message="required">
+                        Last name is required.
+                    </div>
+                </div>
+
+                <ab-text-field name="email" field="email" ph="Email" ng-model="contactCopy.email" req="true"></ab-text-field>
+                <div ng-messages="editContact.email.$error" ng-if="editContact.$submitted" class="error-message">
+                    <div ng-message="required">
+                        A valid email address is required.
+                    </div>
+                </div>
+                <ab-text-field name="address" ph="Address" ng-model="contactCopy.address"></ab-text-field>
+                <ab-text-field name="city" ph="City" ng-model="contactCopy.city"></ab-text-field>
+                <ab-text-field name="zipcode" ph="Zip-code" ng-model="contactCopy.zipcode" pattern="/^\d{5}$/"></ab-text-field>
+                <div ng-messages="editContact.zipcode.$error" ng-if="editContact.$submitted" class="error-message">
+                    <div ng-message="pattern">
+                        Zip code must be 5 digits.
+                    </div>
+                </div>
+                <ab-text-field name="country" ph="Country" ng-model="contactCopy.country"></ab-text-field>
+                <br />
+                <input class="form-field form-submit" type="submit" value="Save" />
+            </form>
+        </div>
+
+
+        <div ng-show="contactAdd" class="addContactForm fadein fadeout" ng-controller="AddContactController">
+            <span class="btn_close" ng-click="resetForm();$parent.contactAdd=!$parent.contactAdd" ng-show="!closeNewAddition"><i class="fa fa-close"></i></span>
+            <div class="item_icon-wrapper"><div class="item_icon">{{firstName | limitTo:1 | uppercase}}</div></div>
+            <form name="newContact" ng-submit="addContact(newContact.$valid)" novalidate>
+
+                <ab-text-field name="firstName" ph="First name" ng-model="firstName" req="true"></ab-text-field>
+                <div ng-messages="newContact.firstName.$error" ng-if="newContact.$submitted" class="error-message">
+                    <div ng-message="required">
+                        First name is required.
+                    </div>
+                </div>
+
+                <ab-text-field name="lastName" ph="Last name" ng-model="lastName" req="true"></ab-text-field>
+                <div ng-messages="newContact.lastName.$error" ng-if="newContact.$submitted" class="error-message">
+                    <div ng-message="required">
+                        Last name is required.
+                    </div>
+                </div>
+
+                <ab-text-field name="email" type="email" ph="Email" ng-model="email" req="true"></ab-text-field>
+                <div ng-messages="newContact.email.$error" ng-if="newContact.$submitted" class="error-message">
+                    <div ng-message="pattern">
+                        Email address must include "@" symbol.
+                    </div>
+                    <div ng-message="required">
+                        A valid email address is required.
+                    </div>
+                </div>
+
+                <ab-text-field name="address" ph="Address" ng-model="address"></ab-text-field>
+                <ab-text-field name="city" ph="City" ng-model="city"></ab-text-field>
+                <ab-text-field name="zipcode" ph="Zip-code" ng-model="zipCode"></ab-text-field>
+                <div ng-messages="newContact.zipcode.$error" ng-ifw="newContact.$submitted" class="error-message">
+                    <div ng-message="pattern">
+                        Zip code must be 5 digits.
+                    </div>
+                </div>
+                <ab-text-field name="country" ph="country" ng-model="country"></ab-text-field>
+                <br />
+                <input class="form-field form-submit" type="submit" value="Add Contact" />
+            </form>
+        </div>
+    </div>
+    <div class="total-contacts" ng-model="totalContacts">
+        {{totalContacts}} total contacts in your address book
+    </div>
+</div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

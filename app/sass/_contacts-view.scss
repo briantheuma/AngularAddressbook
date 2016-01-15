@@ -1,0 +1,155 @@
+.contacts{
+  @include card-size;
+  position: relative;
+  .contacts_items {
+    @include animate;
+    @include card-size;
+    border: 1px solid $c-slate;
+    overflow-x: scroll;
+    padding:20px 30px;
+    position: relative;
+    .item-list_item {
+      @include animate();
+      cursor: pointer;
+      height:40px;
+      overflow:hidden;
+      padding:5px 80px 5px 20px;
+      position:relative;
+      .item_icon {
+        position:absolute;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 28px;
+        font-weight: 300;
+        display: inline-block;
+        color: $c-slate;
+        background: rgba($c-sky, .3);
+      }
+      .item_name {
+        position: absolute;
+        font-size: 12px;
+        font-weight: 700;
+        left: 60px;
+        top: 12px;
+        width: 187px;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      .item_commands {
+        @include animate;
+        position: absolute;
+        font-size: 18px;
+        right: -12px;
+        top: 0;
+        width: 80px;
+        height: 40px;
+        opacity: 0;
+        color:rgba($c-slate,.5);
+        .icon_command {
+          @include animate;
+          padding: 9px;
+          text-align: center;
+          float: left;
+          &:hover {
+            color: $c-slate;
+          }
+        }
+      }
+      &:hover {
+        @include animate;
+        background:$c-clouds;
+        .item_commands {
+          opacity: 1;
+          color:rgba($c-slate,.5);
+        }
+      }
+    }
+  }
+
+
+  .addContactForm{
+    @include animate;
+    @include card-size;
+    border: 1px solid $c-slate;
+    position:absolute;
+    background:$c-white;
+    top:0;
+    left:0;
+    text-align: center;
+    padding:40px;
+  }
+
+  .editContactForm{
+    @include animate;
+    @include card-size;
+    border: 1px solid $c-slate;
+    position:absolute;
+    background:$c-white;
+    top:0;
+    left:0;
+    z-index:10;
+    text-align: center;
+    padding:40px;
+  }
+
+  .full_details{
+    @include animate;
+    @include card-size;
+    border: 1px solid $c-slate;
+    padding:40px;
+    position:absolute;
+    background:$c-white;
+    top:0;
+    left:0;
+    text-align:center;
+    z-index:10;
+    .item_name{
+      padding:5px 0 0 0;
+      font-weight:600;
+      font-size:22px;
+    }
+    .item_email{
+      font-size:12px;
+      a{
+        color:$c-sky;
+      }
+    }
+    .item_address-details{
+      text-align:left;
+      font-size:14px;
+      padding:30px 20px;
+    }
+    .item_commands {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      .icon_command{
+        @include animate;
+        cursor:pointer;
+        padding:5px;
+        color:rgba($c-slate,.5);
+        &:hover{
+          color:$c-slate;
+        }
+      }
+    }
+  }
+  .item_icon-wrapper {
+    height:95px;
+    overflow:hidden;
+    .item_icon {
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      text-align: center;
+      line-height: 78px;
+      font-weight: 400;
+      display: inline-block;
+      font-size: 30px;
+      color: $c-clouds;
+      background: rgba($c-sky, .5);
+    }
+  }
+}

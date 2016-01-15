@@ -1,0 +1,24 @@
+.btn_close{
+  @include animate;
+  cursor:pointer;
+  color:$c-concrete;
+  position:absolute;
+  right:20px;
+  top:15px;
+  &:hover{
+    color:$c-slate;
+  }
+}
+.btn_add-contact{
+  @include animate;
+  color:rgba($c-slate,.8);
+  cursor:pointer;
+  margin:0 auto;
+  text-align:right;
+  padding-bottom:10px;
+  width: 90vw;
+  max-width:700px;
+  &:hover{
+    color:$c-slate;
+  }
+}

@@ -1,0 +1,39 @@
+//FORM FIELDS
+.form-field{
+  outline:0;
+  display:block;
+  margin:5px auto 15px auto;
+  border:none;
+  border-bottom:1px solid $c-clouds;
+  font-size:12px;
+  font-weight:600;
+  padding:2px 20px;
+  &.form-submit{
+    @include animate;
+    color:rgba($c-slate,.8);
+    border-radius:3px;
+    padding:10px 30px;
+    cursor:pointer;
+    border:1px solid rgba($c-sky,.5);
+    background:$c-white;
+    &:hover{
+      background:rgba($c-sky,.05);
+      color:rgba$c-slate;
+    }
+  }
+  &.ng-valid-required.ng-touched[ng-required="true"]{
+    border-bottom:1px solid $c-emerald;
+  }
+  &.ng-invalid-required.ng-touched{
+    border-bottom:1px solid $c-tomato;
+  }
+}
+.error-message{
+  font-family:$f-tahoma;
+  color:$c-tomato;
+  font-size: 10px;
+  left:0;
+  margin: -13px auto 0 auto;
+  position: absolute;
+  width: 100%;
+}

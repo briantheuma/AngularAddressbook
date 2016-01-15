@@ -1,0 +1,14 @@
+@mixin animate(){
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+@mixin card-size {
+  border-radius:5px;
+  height: 60vh;
+  min-height:550px;
+  margin:0 auto;
+  width: 90vw;
+  max-width:700px;
+}
