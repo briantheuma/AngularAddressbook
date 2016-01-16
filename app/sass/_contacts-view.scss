@@ -78,7 +78,7 @@
     top:0;
     left:0;
     text-align: center;
-    padding:40px;
+    padding:20px;
     z-index: 11;
   }
 
@@ -92,14 +92,14 @@
     left:0;
     z-index:10;
     text-align: center;
-    padding:40px;
+    padding:20px;
   }
 
   .full_details{
     @include animate;
     @include card-size;
     border: 1px solid $c-slate;
-    padding:40px;
+    padding:20px;
     position:absolute;
     background:$c-white;
     top:0;

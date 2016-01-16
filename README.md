@@ -21,4 +21,6 @@ Next Open "http://localhost:4700/" in your favorite browser
 
 You're good to go! You can now use the Client Side Address Book!
 
+The app is also hosted at: <http://briantheuma.com/apps/address/>
+
 Enjoy!
